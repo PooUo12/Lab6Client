@@ -1,0 +1,5 @@
+info
+show
+show
+add
+execute_script scripts2.txt
