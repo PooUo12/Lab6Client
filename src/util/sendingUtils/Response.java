@@ -19,4 +19,8 @@ public class Response implements Serializable {
     public String toString() {
         return title + " : " + message;
     }
+
+    public String getMessage() {
+        return message;
+    }
 }

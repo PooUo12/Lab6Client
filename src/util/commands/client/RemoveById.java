@@ -1,7 +1,8 @@
-package util.commands;
+package util.commands.client;
 
 
 
+import util.commands.Command;
 import util.sendingUtils.Response;
 
 import java.util.List;

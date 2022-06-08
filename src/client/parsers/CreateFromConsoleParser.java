@@ -74,7 +74,7 @@ public class CreateFromConsoleParser {
         }
         Coordinates coordinates = new Coordinates(coordinatesX, coordinatesY);
         Location location = new Location(locationX, locationY, locationZ, locationName);
-        return new Person(id, personName, coordinates, creationDate, height, weight, passportID, hairColor, location);
+        return new Person(id, personName, coordinates, creationDate, height, weight, passportID, hairColor, location, null);
     }
 
     private int intCheck(Scanner in, String output){

@@ -12,7 +12,7 @@ public class HostDefiner {
 
     public InetAddress setHost() throws UnknownHostException {
         InetAddress port;
-        System.out.println("Write host, example:" + InetAddress.getLocalHost().toString().substring(26));
+        System.out.println("Write host, example:" + InetAddress.getLocalHost().toString());
         port = InetAddress.getByName(scanner.nextLine());
         return port;
     }

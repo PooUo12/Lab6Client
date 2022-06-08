@@ -1,5 +1,12 @@
 info
 show
 show
-add
+show
+show
+show
+show
+show
+show
+show
+
 execute_script scripts2.txt

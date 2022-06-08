@@ -14,8 +14,9 @@ public class Person implements Comparable<Person>, Serializable {
     private final String passportID;
     private final Color hairColor;
     private final Location location;
+    private String user;
 
-    public Person(int id, String name, Coordinates coordinates, ZonedDateTime creationDate, int height, Double weight, String passportID, Color hairColor, Location location){
+    public Person(int id, String name, Coordinates coordinates, ZonedDateTime creationDate, int height, Double weight, String passportID, Color hairColor, Location location, String user){
         this.creationDate = creationDate;
         this.id = id;
         this.name = name;
@@ -25,6 +26,7 @@ public class Person implements Comparable<Person>, Serializable {
         this.passportID = passportID;
         this.hairColor = hairColor;
         this.location = location;
+        this.user = user;
     }
 
 
@@ -34,7 +36,7 @@ public class Person implements Comparable<Person>, Serializable {
     }
 
     public int compareTo(Person p){
-        return this.id - p.getId();
+            return name.compareTo(p.getName());
     }
 
     public Double getWeight(){
@@ -50,7 +52,7 @@ public class Person implements Comparable<Person>, Serializable {
     }
 
     public String toString(){
-        return(id+","+name+","+coordinates.toFullString()+","+ creationDate.toString() + "," +height+","+weight+","+passportID+","+hairColor+","+location.toFullString());
+        return(id+","+name+","+coordinates.toFullString()+","+ creationDate.toString() + "," +height+","+weight+","+passportID+","+hairColor+","+location.toFullString() + "," + user);
     }
 
     public void setId(int id) {
@@ -59,6 +61,34 @@ public class Person implements Comparable<Person>, Serializable {
 
     public void setCreationDate() {
         creationDate =  ZonedDateTime.now();
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public ZonedDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public String getHairColor() {
+        return hairColor.toString();
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }
 
