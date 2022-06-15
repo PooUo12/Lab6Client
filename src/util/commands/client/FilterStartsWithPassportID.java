@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FilterStartsWithPassportID extends Command {
 
-    public Response execute(List<Object> params){
+    public Response execute(List<Object> params) {
         return null;
     }
 }

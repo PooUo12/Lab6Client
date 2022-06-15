@@ -23,14 +23,14 @@ public class CommandsParser {
     private final String login;
     private final String password;
 
-    public CommandsParser( CreateFromConsoleParser createFromConsoleParser, Scanner in, String login, String password){
+    public CommandsParser(CreateFromConsoleParser createFromConsoleParser, Scanner in, String login, String password) {
         this.createFromConsoleParser = createFromConsoleParser;
         this.in = in;
         this.login = login;
         this.password = password;
     }
 
-    public List<Request> parseCommand(){
+    public List<Request> parseCommand() {
         List<Request> requests = new ArrayList<>();
         List<Object> args = new ArrayList<>();
         System.out.println("Enter your command:");
@@ -38,13 +38,13 @@ public class CommandsParser {
             String[] command = in.nextLine().split(" ");
 
             return getRequests(requests, args, command);
-        } catch (InvalidCommandException e){
+        } catch (InvalidCommandException e) {
             System.out.println(e.getMessage());
-        } catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Argument is absent");
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Argument has wrong format");
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             System.out.println("You input command+D, stopping the program");
             this.flag = true;
         }
@@ -55,7 +55,7 @@ public class CommandsParser {
     private List<Request> getRequests(List<Request> requests, List<Object> args, String[] command) {
         Request request;
         Person person;
-        switch (command[0]){
+        switch (command[0]) {
             case HELP:
                 Command help = new Help();
                 request = new Request(help, null, login, password, Marks.NOTHING);
@@ -148,25 +148,25 @@ public class CommandsParser {
         }
     }
 
-    public List<Request> parseCommand(String line){
+    public List<Request> parseCommand(String line) {
         String[] command = line.split(" ");
         List<Request> requests = new ArrayList<>();
         List<Object> args = new ArrayList<>();
 
-        try{
+        try {
             return getRequests(requests, args, command);
-        } catch (InvalidCommandException e){
+        } catch (InvalidCommandException e) {
             System.out.println(e.getMessage());
-        } catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Argument is absent");
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Argument has wrong format");
         }
         return null;
     }
 
 
-    public boolean getFlag(){
+    public boolean getFlag() {
         return flag;
     }
 }

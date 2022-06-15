@@ -16,17 +16,18 @@ import java.util.Scanner;
 public class ScriptParser {
     private final CommandsParser commandsParser;
     private int i = 0;
+
     /**
      * @param commandsParser Parser and executor of util.commands
      */
-    public ScriptParser(CommandsParser commandsParser){
+    public ScriptParser(CommandsParser commandsParser) {
         this.commandsParser = commandsParser;
     }
 
     /**
      * @param scriptName name of the script file
      */
-    public List<Request> parse(String scriptName){
+    public List<Request> parse(String scriptName) {
         List<Request> requests = new ArrayList<>();
         try {
             i++;
@@ -37,9 +38,9 @@ public class ScriptParser {
             BufferedInputStream buff = new BufferedInputStream(new FileInputStream(scriptName));
             Scanner s = new Scanner(buff);
 
-            while(s.hasNext()){
+            while (s.hasNext()) {
                 line = s.nextLine();
-                if (line.equals("execute_script " + scriptName)){
+                if (line.equals("execute_script " + scriptName)) {
                     System.out.println("Impossible to use same script from script");
                     break;
                 }
@@ -49,7 +50,7 @@ public class ScriptParser {
             }
         } catch (FileNotFoundException e) {
             System.out.println("Incorrect file name");
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
         return requests;

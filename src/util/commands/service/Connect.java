@@ -6,7 +6,7 @@ import util.sendingUtils.Response;
 import java.util.List;
 
 public class Connect extends Command {
-    public Response execute(List<Object> params){
+    public Response execute(List<Object> params) {
         return null;
     }
 }

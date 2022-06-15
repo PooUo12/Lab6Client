@@ -11,13 +11,13 @@ public class ColorRecognizer {
     private final static String ORANGE = "orange";
     private final static String WHITE = "white";
 
-    public ColorRecognizer(String color){
+    public ColorRecognizer(String color) {
         this.color = color;
     }
 
-    public Color stringToColor(){
+    public Color stringToColor() {
         Color colorForReturn = null;
-        switch (color.toLowerCase()){
+        switch (color.toLowerCase()) {
             case RED:
                 colorForReturn = Color.RED;
                 break;

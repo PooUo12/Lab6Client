@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 public class HostDefiner {
     private final Scanner scanner;
-    public HostDefiner(Scanner scanner){
+
+    public HostDefiner(Scanner scanner) {
         this.scanner = scanner;
     }
 
@@ -17,7 +18,7 @@ public class HostDefiner {
         return port;
     }
 
-    public int setPort() throws NumberFormatException{
+    public int setPort() throws NumberFormatException {
         int host;
         System.out.println("Write port");
         host = Integer.parseInt(scanner.nextLine());

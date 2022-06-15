@@ -19,13 +19,13 @@ public class Client {
     private final int port;
     private String login = null;
     private String password = null;
-    
-    public Client(InetAddress host, int port){
+
+    public Client(InetAddress host, int port) {
         this.host = host;
         this.port = port;
     }
 
-    public Response sender(byte[] arr){
+    public Response sender(byte[] arr) {
         Response response = this.connection(arr);
         if (response != null) {
             System.out.println(response);
@@ -37,18 +37,18 @@ public class Client {
     private Response connection(byte[] arr) {
         byte[] arr1 = Constants.arr;
         Response response = null;
-        try(DatagramSocket ds = new DatagramSocket()) {
+        try (DatagramSocket ds = new DatagramSocket()) {
             dp = new DatagramPacket(arr, arr.length, host, port);
             ds.send(dp);
             ds.setSoTimeout(1000);
             dp = new DatagramPacket(arr1, arr1.length);
             ds.receive(dp);
             response = (Response) Serializer.deserializer(dp.getData());
-        } catch (SocketTimeoutException e){
+        } catch (SocketTimeoutException e) {
             System.out.println("No response from server");
-        } catch (SecurityException e){
+        } catch (SecurityException e) {
             System.out.println("Your security manager doesn't allow you to connect");
-        } catch (SocketException e){
+        } catch (SocketException e) {
             System.out.println("Socket can't be opened");
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,31 +56,31 @@ public class Client {
         return response;
     }
 
-    private boolean checkConnection(){
+    private boolean checkConnection() {
         boolean ret = false;
         byte[] arr = Serializer.serializer(new Request(new Connect(), null, login, password, Marks.NOTHING)).toByteArray();
         byte[] arr1 = Constants.arr;
         Response response = null;
-        try(DatagramSocket ds = new DatagramSocket()) {
+        try (DatagramSocket ds = new DatagramSocket()) {
             dp = new DatagramPacket(arr, arr.length, host, port);
             ds.send(dp);
             dp = new DatagramPacket(arr1, arr1.length);
             ds.setSoTimeout(1000);
             ds.receive(dp);
             response = (Response) Serializer.deserializer(dp.getData());
-        } catch (SocketTimeoutException e){
+        } catch (SocketTimeoutException e) {
             System.out.println("No server at this host and port");
-        } catch (SecurityException e){
+        } catch (SecurityException e) {
             System.out.println("Your security manager doesn't allow you to connect");
-        } catch (SocketException e){
+        } catch (SocketException e) {
             System.out.println("Socket can't be opened");
         } catch (IOException e) {
             System.out.println("Host is incorrect");
         }
-            if (response != null){
-                ret = true;
-                System.out.println(response);
-            }
+        if (response != null) {
+            ret = true;
+            System.out.println(response);
+        }
         return ret;
     }
 
@@ -92,7 +92,7 @@ public class Client {
         this.password = password;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         HostDefiner hostDefiner = new HostDefiner(in);
         CreateFromConsoleParser createFromConsoleParser = new CreateFromConsoleParser();
@@ -103,13 +103,13 @@ public class Client {
             try {
                 host = hostDefiner.setHost();
                 port = hostDefiner.setPort();
-                client = new Client(host , port);
-                if (client.checkConnection()){
+                client = new Client(host, port);
+                if (client.checkConnection()) {
                     break;
                 }
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Wrong port");
-            } catch (UnknownHostException e){
+            } catch (UnknownHostException e) {
                 System.out.println("Wrong host");
             }
         }
@@ -120,10 +120,10 @@ public class Client {
             boolean flag = false;
             if (req != null) {
                 response = client.sender(Serializer.serializer(req).toByteArray());
-                if (response.getTitle().equals("Success")){
+                if (response.getTitle().equals("Success")) {
                     flag = true;
                 }
-                if (flag){
+                if (flag) {
                     String[] arr = response.getMessage().split(" ");
                     client.setLogin(arr[4]);
                     client.setPassword(arr[9]);
@@ -134,9 +134,9 @@ public class Client {
             }
         }
 
-        CommandsParser commandsParser = new CommandsParser( createFromConsoleParser, in, client.login, client.password);
+        CommandsParser commandsParser = new CommandsParser(createFromConsoleParser, in, client.login, client.password);
         do {
-            if (client.login == null){
+            if (client.login == null) {
                 System.out.println("You can not execute commands please log in");
                 break;
             }

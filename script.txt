@@ -8,5 +8,18 @@ show
 show
 show
 show
-
-execute_script scripts2.txt
+show
+show
+show
+show
+show
+show
+show
+show
+show
+show
+show
+show
+show
+show
+show
